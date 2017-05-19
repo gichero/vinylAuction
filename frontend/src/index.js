@@ -22,8 +22,8 @@ class AppLayout extends React.Component {
 
 ReactDOM.render(
     <Router history={hashHistory}>
-        <Route path = "/"
-            component={AppLayout}>
+        <Route path = "/" component={AppLayout}>
+        <IndexRoute component={HomePageContainer}/>
         </Route>
     </Router>,
   document.getElementById('root')
