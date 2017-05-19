@@ -18,12 +18,15 @@ app.use(bodyParser.json());
 
 app.use(cors());
 
+// Request  all products
+
 app.get('/api/products', (req, resp, next) => {
   db.any('select * from product')
     .then(data => resp.json(data))
     .catch(next);
 });
 
+// Request specific product
 app.get('/api/product/:id', (req, resp, next) => {
   let id = req.params.id;
   db.oneOrNone('select * from product where id = $1', id)
@@ -40,9 +43,8 @@ app.get('/api/product/:id', (req, resp, next) => {
     .catch(next);
 });
 
-
 /*
-Request body shape:
+Request customer information
 {
   username: "lolcat",
   password: "forthelolz",
@@ -51,6 +53,7 @@ Request body shape:
   last_name: "cat"
 }
 */
+
 app.post('/api/user/signup', (req, resp, next) => {
   let data = req.body;
   bcrypt.hash(data.password, 10)
@@ -74,12 +77,13 @@ app.post('/api/user/signup', (req, resp, next) => {
 });
 
 /*
-Request body shape:
+Request Login:
 {
   username: "lolcat",
   password: "forthelolz",
 }
 */
+
 app.post('/api/user/login', (req, resp, next) => {
   let username = req.body.username;
   let password = req.body.password;
