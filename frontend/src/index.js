@@ -6,15 +6,18 @@ import ReduxThunk from 'redux-thunk';
 import {Router, Route, Link, IndexLink, IndexRoute, hashHistory} from 'react-router';
 import './index.css';
 
-
-
+const reducer = Redux.combineReducers({
+    HomePage: HomePageReducer
+});
 
 class AppLayout extends React.Component {
     render(){
 
         return(
         <div>
-            <h1>Welcome to the Vinyl Auction</h1>
+            <div className = "navbar">
+                <h1>Welcome to the Vinyl Auction</h1>
+            </div>
         </div>
     );
     }
