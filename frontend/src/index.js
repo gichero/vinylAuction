@@ -4,6 +4,7 @@ import * as Redux from 'redux';
 import * as ReactRedux from 'react-redux';
 import ReduxThunk from 'redux-thunk';
 import {Router, Route, Link, IndexLink, IndexRoute, hashHistory} from 'react-router';
+import HomePageContainer from './vPages/homePage.js';
 import './index.css';
 
 const reducer = Redux.combineReducers({
