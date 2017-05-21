@@ -1,6 +1,6 @@
-const = INITIAL_STATE = {
-    allImages = [],
-    userInfo = null
+const INITIAL_STATE = {
+    allImages: [],
+    userInfo: null
 };
 
     export default function reducer(state = INITIAL_STATE, action) {

@@ -1,3 +1,4 @@
+import {Link} from "react-router";
 import $ from 'jquery';
 
 function pageInfo(info){
@@ -6,7 +7,6 @@ function pageInfo(info){
         payload: info
     }
 }
-
 export function fetchImage(id){
     let asyncAction = function(dispatch){
         $.ajax({

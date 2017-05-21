@@ -3,7 +3,7 @@ import * as ReactRedux from 'react-redux';
 import * as actions from './productDetail.actions';
 import { Router, Route, Link, IndexLink, IndexRoute, hashHistory } from 'react-router';
 
-class productdetail extends React.Component{
+class ProductDetail extends React.Component{
 
     componentDidMount(){
             this.props.fetchImage(this.props.params.id);
@@ -32,8 +32,6 @@ class productdetail extends React.Component{
 const ProductDetailContainer = ReactRedux.connect(
     state =>state.ProductDetail,
     actions
-)(ProductDetail)
+)(ProductDetail);
 
 export default ProductDetailContainer;
-
-}
