@@ -117,7 +117,11 @@ app.post('/api/user/login', (req, resp, next) => {
         auth_token: loginSession.token
       });
     });
+    .catch(next);
 });
+//API bid placed
+//API checkout
+
 
 app.use((err, req, resp, next) => {
   resp.status(500);
