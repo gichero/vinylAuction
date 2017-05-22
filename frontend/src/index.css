@@ -8,8 +8,7 @@ body {
   position:fixed;
   top: 0;
   width: 100%;
-  /*background-color: lightBlue;*/
-  height: 5vw;
+  height: 4vw;
   z-index: 0;
 }
 .products{
@@ -18,12 +17,13 @@ body {
   margin-left: 5vw;
   margin-bottom: 2vw;
   background-color: f8f8f8;
-  /*margin-left: 5vw;
-  margin-bottom: 5vw;*/
+  margin-left: 5vw;
+  margin-bottom: 5vw;
 }
 .cover{
-    width: 100%;
-    height: 30vw;
+    /*width: 100%;*/
+    width: 25vw;
+    height: 25vw;
 }
 .page{
   margin-top: 7vw;
@@ -34,7 +34,6 @@ body {
   margin-right: 10vw;
   height: 445px;
 }
-
 .description{
   float: left;
   width: 40%;
@@ -42,19 +41,16 @@ body {
 .topRight{
   float: right;
 }
-
 .products button{
   float: right;
 }
 .products h4{
   float: left;
 }
-
 .loginform{
     z-index: 1;
     float:right;
 }
-
 .signup{
     margin-top: 100px;
     margin-left: 20px;
