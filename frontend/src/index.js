@@ -10,15 +10,12 @@ import ProductDetailContainer from './vPages/productDetail.js';
 import ProductDetailReducer from './vPages/productDetail.reducer';
 import SignupReducer from './vPages/signup.reducer';
 import SignupContainer from './vPages/signup';
-import AppLayoutReducer from './vPages/appLayout.reducer';
-import * as actions from './vPages/appLayout.actions';
 import './index.css';
 
 const reducer = Redux.combineReducers({
     HomePage: HomePageReducer,
     ProductDetail: ProductDetailReducer,
     Signup: SignupReducer,
-    AppLayout: AppLayoutReducer
 });
 
 const store = Redux.createStore(
@@ -56,13 +53,6 @@ class AppLayout extends React.Component {
     )
   }
 }
-
-const AppLayoutContainer = ReactRedux.connect(
-  state => state.AppLayout,
-  actions
-)(AppLayout);
-
-
 
 ReactDOM.render(
     <ReactRedux.Provider store={store}>

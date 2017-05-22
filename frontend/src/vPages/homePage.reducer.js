@@ -1,6 +1,6 @@
 const INITIAL_STATE = {
     allImages: [],
-    userInfo: null
+    userinfo: null
 };
 
     export default function reducer(state = INITIAL_STATE, action) {
@@ -10,26 +10,26 @@ const INITIAL_STATE = {
             allImages: action.payload
         });
 
-    }else if(action.type === 'logIn'){
+    }else if(action.type === 'login'){
         return Object.assign({}, state, {
-            userInfo: action.payload
+            userinfo: action.payload
         });
-    }else if(action.type === 'userLogin'){
+    }else if(action.type === 'userlogin'){
         return Object.assign({}, state, {
-            userLogin: action.text
+            userlogin: action.text
         });
-    }else if(action.type === 'passLogin'){
+    }else if(action.type === 'passlogin'){
         return Object.assign({}, state, {
-            passLogin: action.text
+            passlogin: action.text
         });
-    }else if (action.type === "loginError"){
+    }else if (action.type === "loginerror"){
          return Object.assign({}, state, {
-             loginMessage:action.message
+             loginmessage:action.message
          });
-     }else if (action.type === "logOut"){
-         console.log('logOut');
+     }else if (action.type === "logout"){
+         console.log('logout');
          return Object.assign({}, state, {
-            userInfo: null
+            userinfo: null
      });
      }
   return state;

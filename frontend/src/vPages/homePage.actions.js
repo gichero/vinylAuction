@@ -11,14 +11,14 @@ export function pageInfo(info){
 
 export function loginInfo(info){
     return{
-        type: 'logIn',
+        type: 'login',
         payload: info
     }
 }
 
-export function logOut(){
+export function logout(){
     return{
-        type: 'logOut'
+        type: 'logout'
     }
 }
 
@@ -32,7 +32,7 @@ export function fetchImage(){
     return asyncAction;
 }
 
-export function logIn(info){
+export function login(info){
     console.log(info.username);
     let asyncAction = function(dispatch){
         $.ajax({
