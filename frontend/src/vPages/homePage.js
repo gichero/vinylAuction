@@ -41,7 +41,6 @@ render() {
             <h3>{page.name}</h3>
             <h4>Starting bid ${page.price.toFixed(2)}</h4>
             <h4><a href={"/productDetail/"+page.id}/></h4>
-            <button><Link to={"/productDetail/"+page.id}>Place a Bid!</Link></button>
             <button><Link to={"/productDetail/"+page.id}>Check it out!</Link></button>
             </div>)}
         </div>
