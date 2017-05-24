@@ -2,7 +2,7 @@ const INITIAL_STATE = {
     items: []
 }
 
-export default function productDetailReducer(state = INITIAL_STATE,action){
+export default function ProductDetailReducer(state = INITIAL_STATE,action){
 
     if(action.type === 'fetchImage'){
         return Object.assign({}, state, {

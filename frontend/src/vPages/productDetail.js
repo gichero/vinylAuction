@@ -1,7 +1,7 @@
 import React from 'react';
 import * as ReactRedux from 'react-redux';
 import * as actions from './productDetail.actions';
-import { Router, Route, Link, IndexLink, IndexRoute, hashHistory } from 'react-router';
+import {Router, Route, Link, IndexLink, IndexRoute, hashHistory} from 'react-router';
 
 class ProductDetail extends React.Component{
 
@@ -21,9 +21,9 @@ class ProductDetail extends React.Component{
                 <div className='description'>
                     <h1>{this.props.items.name}</h1>
                     <p>{this.props.items.description}</p>
-                    <h2>Starting Bid ${this.props.items.price}.00</h2>
-                    <button><Link to="/">Back!</Link></button>
-                    <button><Link to="/">Place Bid</Link></button>
+                    <h2>Starting Bid ${this.props.items.price}.00</h2>  
+                    <button><Link to= "/">Previous Page</Link></button>
+                    <button><Link to= "/">Place a Bid</Link></button>
                 </div>
             </div>
         )

@@ -15,7 +15,7 @@ import './index.css';
 const reducer = Redux.combineReducers({
     HomePage: HomePageReducer,
     ProductDetail: ProductDetailReducer,
-    Signup: SignupReducer,
+    Signup: SignupReducer
 });
 
 const store = Redux.createStore(
@@ -37,7 +37,6 @@ class AppLayout extends React.Component {
             </div>
     );
   }
-
         return(
             <div>
       <div>
