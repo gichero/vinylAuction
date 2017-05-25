@@ -1,5 +1,5 @@
 body {
-  margin-left: 2vw;
+  margin-left: 0;
   padding: 0;
   font-family: sans-serif;
 }
@@ -8,15 +8,20 @@ body {
   position:fixed;
   top: 0;
   width: 100%;
-  height: 4vw;
+  height: 6vw;
   z-index: 0;
+  background-color: lightblue;
 }
+
+.navbar button input{
+    float: right;
+}
+
 .products{
   float: left;
   width: 25%;
-  margin-left: 5vw;
+  margin-left: 10vw;
   margin-bottom: 2vw;
-  background-color: f8f8f8;
   /*margin-left: 5vw;
   margin-bottom: 5vw;*/
 }
@@ -26,18 +31,28 @@ body {
     height: 25vw;
 }
 .page{
-  margin-top: 7vw;
+  margin-top: 10vw;
+  margin-left: 10vw;
 }
+
 .detailPic{
   float: left;
+  margin-top: 10vw;
   margin-left: 15vw;
   margin-right: 10vw;
-  height: 445px;
+  height: 400px;
 }
 .description{
+  margin-top: 10vw;
   float: left;
   width: 40%;
 }
+
+.signup{
+    margin-top: 8vw;
+    margin-left: 10vw;
+}
+
 .topRight{
   float: right;
 }

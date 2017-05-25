@@ -12,11 +12,10 @@ class HomePage extends React.Component {
 render() {
 
     let display;
-      console.log(this.props.userinfo);
-      if(!this.props.userinfo){
+     if(!this.props.userinfo){
 
       display = (
-          <div className='loginform'>
+          <div className = "navbar">
           <button onClick={()=>this.props.login({username:this.props.userlogin, password: this.props.passlogin})}>LogIn</button>
           <input onChange={event=>this.props.write(event.target.value,'userlogin')}className='userlogin' type='text'/>
           <input onChange={event=>this.props.write(event.target.value,'passlogin')}className='passlogin' type='text'/>
@@ -32,7 +31,9 @@ render() {
           </div>)
    }
 
+
     return(
+
         <div className = "page">
         {display}
         {this.props.allImages.map((page, idx)=>
@@ -42,6 +43,7 @@ render() {
             <h4>Starting bid ${page.price.toFixed(2)}</h4>
             <h4><a href={"/productDetail/"+page.id}/></h4>
             <button><Link to={"/productDetail/"+page.id}>Check it out!</Link></button>
+            <h5>bid increments by $5</h5>
             </div>)}
         </div>
     )

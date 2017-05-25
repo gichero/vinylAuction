@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import * as Redux from 'redux';
 import * as ReactRedux from 'react-redux';
 import ReduxThunk from 'redux-thunk';
+import {persistStore, autoRehydrate} from 'redux-persist';
 import {Router, Route, Link, IndexLink, IndexRoute, hashHistory} from 'react-router';
 import HomePageContainer from './vPages/homePage.js';
 import HomePageReducer from './vPages/homePage.reducer';
@@ -21,8 +22,13 @@ const reducer = Redux.combineReducers({
 const store = Redux.createStore(
   reducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-  Redux.applyMiddleware(ReduxThunk)
+  Redux.compose(
+  Redux.applyMiddleware(ReduxThunk),
+  autoRehydrate()
+  )
 );
+
+persistStore(store);
 
 class AppLayout extends React.Component {
 

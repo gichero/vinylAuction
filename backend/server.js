@@ -110,6 +110,7 @@ app.post('/api/user/login', (req, resp, next) => {
     })
     .spread((customer, loginSession) => {
       resp.json({
+        id: customer.id,
         username: customer.username,
         email: customer.email,
         first_name: customer.first_name,
@@ -121,28 +122,39 @@ app.post('/api/user/login', (req, resp, next) => {
 });
 //API bid placed
 //API checkout
-function respondUnauthorized(resp){
-    resp.status(403);
-    resp.json({
-        message: 'Unauthorized'
-    });
-}
+// function respondUnauthorized(resp){
+//     //resp.status(403);
+//     resp.json({
+//         message: 'Unauthorized'
+//     });
+// }
 
-app.use(function authorization(req, resp, next) {
-    let token = req.body.token;
-    if(!token){
-        respondUnauthorized(resp);
-        return;
-    }
-    db.oneOrNone(`select * from login_session where token = $1`, token)
-    .then(loginSession => {
-        if(!loginSession){
-            respondUnauthorized(resp);
-            return;
-        }
-        req.loginSession = loginSession;
-        next();
-    })
+// app.use(function authorization(req, resp, next) {
+//     let token = req.body.token;
+//     if(!token){
+//         respondUnauthorized(resp);
+//         return;
+//     }
+//     db.oneOrNone(`select * from login_session where token = $1`, token)
+//     .then(loginSession => {
+//         if(!loginSession){
+//             respondUnauthorized(resp);
+//             return;
+//         }
+//         req.loginSession = loginSession;
+//         next();
+//     })
+//     .catch(next);
+// });
+
+app.post('/api/user/bid', (req, resp, next)=>{
+    console.log("bidded");
+    console.log(req.body);
+    let customerId = req.body.user;
+    let productId = req.body.product.id;
+    let price = req.body.product.price;
+    db.one(`insert into bid values(default, $1, $2, $3) returning *`, [customerId, productId, price])
+    .then(data => resp.json(data))
     .catch(next);
 });
 
@@ -156,7 +168,7 @@ app.post('/api/shopping_cart',(req, resp, next)=>{
 
 
 app.use((err, req, resp, next) => {
-  //resp.status(500);
+  resp.status(500);
   resp.json({
     message: err.message,
     stack: err.stack.split('\n')

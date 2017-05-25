@@ -1,12 +1,14 @@
 const INITIAL_STATE = {
-    items: []
+    items: [],
+    bid: null
 }
 
 export default function ProductDetailReducer(state = INITIAL_STATE,action){
 
-    if(action.type === 'fetchImage'){
+    if(action.type === 'detailImage'){
         return Object.assign({}, state, {
-            items: action.payload
+            items: action.payload,
+            bid: action.payload.price
         });
     }
     return state;

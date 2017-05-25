@@ -23,6 +23,7 @@ export function logout(){
 }
 
 export function fetchImage(){
+    console.log("homepage actions");
     let asyncAction = function(dispatch){
         $.ajax({
             url: 'http://localhost:4000/api/products/'
