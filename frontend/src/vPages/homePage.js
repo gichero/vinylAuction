@@ -16,18 +16,22 @@ render() {
 
       display = (
           <div className = "navbar">
+          <div className = "loginform">
           <button onClick={()=>this.props.login({username:this.props.userlogin, password: this.props.passlogin})}>LogIn</button>
           <input onChange={event=>this.props.write(event.target.value,'userlogin')}className='userlogin' type='text'/>
           <input onChange={event=>this.props.write(event.target.value,'passlogin')}className='passlogin' type='text'/>
           <button><Link to='/signup'>Sign Up</Link></button>
+          </div>
           </div>
       )
 
   }else{
 
       display = (
-          <div>
-          <h3>Welcome {this.props.userinfo.first_name}</h3><button onClick={()=>this.props.logout()}>logOut</button>
+          <div className ="navbar">
+          <div className = "logout">
+          <h3>Welcome {this.props.userinfo.first_name}<button onClick={()=>this.props.logout()} className > logOut</button></h3>
+          </div>
           </div>)
    }
 

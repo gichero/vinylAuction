@@ -47,7 +47,8 @@ class AppLayout extends React.Component {
             <div>
       <div>
         <div className="navbar">
-          <h1><IndexLink to="/" activeClassName="active">VinylAuction</IndexLink></h1>
+          <h2>VinylAuction</h2>
+          <h4><IndexLink to="/" activeClassName="active">All Records</IndexLink></h4>
           {topRight}
         </div>
         <div className="content">
