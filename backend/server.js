@@ -120,32 +120,32 @@ app.post('/api/user/login', (req, resp, next) => {
     });
     //.catch(next);
 });
-//API bid placed
-//API checkout
-// function respondUnauthorized(resp){
-//     //resp.status(403);
-//     resp.json({
-//         message: 'Unauthorized'
-//     });
-// }
+// API bid placed
+// API checkout
+function respondUnauthorized(resp){
+    //resp.status(403);
+    resp.json({
+        message: 'Unauthorized'
+    });
+}
 
-// app.use(function authorization(req, resp, next) {
-//     let token = req.body.token;
-//     if(!token){
-//         respondUnauthorized(resp);
-//         return;
-//     }
-//     db.oneOrNone(`select * from login_session where token = $1`, token)
-//     .then(loginSession => {
-//         if(!loginSession){
-//             respondUnauthorized(resp);
-//             return;
-//         }
-//         req.loginSession = loginSession;
-//         next();
-//     })
-//     .catch(next);
-// });
+app.use(function authorization(req, resp, next) {
+    let token = req.body.token;
+    if(!token){
+        respondUnauthorized(resp);
+        return;
+    }
+    db.oneOrNone(`select * from login_session where token = $1`, token)
+    .then(loginSession => {
+        if(!loginSession){
+            respondUnauthorized(resp);
+            return;
+        }
+        req.loginSession = loginSession;
+        next();
+    })
+    .catch(next);
+});
 
 app.post('/api/user/bid', (req, resp, next)=>{
     let productId = req.body.product_id + "";
@@ -181,7 +181,8 @@ app.post('/api/shopping_cart',(req, resp, next)=>{
 
 
 app.use((err, req, resp, next) => {
-  resp.status(500);
+  //resp.status(500);
+  resp.status(403);
   resp.json({
     message: err.message,
     stack: err.stack.split('\n')
