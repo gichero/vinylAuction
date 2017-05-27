@@ -10,6 +10,13 @@ function pageInfo(info){
     }
 }
 
+function bidInfo(info){
+    return{
+        type: 'newBid',
+        payload:info
+    }
+}
+
 export function fetchProduct(id){
     console.log("fetchImage")
     let asyncAction = function(dispatch){
@@ -31,10 +38,11 @@ export function placeBid(data){
             url: 'http://localhost:4000/api/user/bid',
             data: JSON.stringify({
                 user: data.user,
-                product: data.product,
+                product_id: data.product.id,
             }),
             contentType: 'application/json'
         })
+        .then(info=>dispatch(bidInfo(info)))
     }
-    return asyncAction;
+        return asyncAction;
 }

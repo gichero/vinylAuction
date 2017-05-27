@@ -25,7 +25,11 @@ export function signup(data){
                 }),
                 dataType: 'json'
             })
-            .then(info=>dispatch(pageInfo(info)))
+            .then(info=>{
+                dispatch(pageInfo(info))
+                hashHistory.push("/")
+            })
+
         }
         return asyncAction;
     }else{

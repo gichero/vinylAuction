@@ -5,12 +5,15 @@ import * as ReactRedux from 'react-redux';
 import ReduxThunk from 'redux-thunk';
 import {persistStore, autoRehydrate} from 'redux-persist';
 import {Router, Route, Link, IndexLink, IndexRoute, hashHistory} from 'react-router';
-import HomePageContainer from './vPages/homePage.js';
-import HomePageReducer from './vPages/homePage.reducer';
-import ProductDetailContainer from './vPages/productDetail.js';
-import ProductDetailReducer from './vPages/productDetail.reducer';
-import SignupReducer from './vPages/signup.reducer';
-import SignupContainer from './vPages/signup';
+
+//
+
+import HomePageContainer from './vPages/homePage/homePage.js';
+import HomePageReducer from './vPages/homePage/homePage.reducer';
+import ProductDetailContainer from './vPages/productDetail/productDetail.js';
+import ProductDetailReducer from './vPages/productDetail/productDetail.reducer';
+import SignupReducer from './vPages/signup/signup.reducer';
+import SignupContainer from './vPages/signup/signup.js';
 import './index.css';
 
 const reducer = Redux.combineReducers({

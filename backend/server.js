@@ -148,12 +148,25 @@ app.post('/api/user/login', (req, resp, next) => {
 // });
 
 app.post('/api/user/bid', (req, resp, next)=>{
-    console.log("bidded");
-    console.log(req.body);
+    let productId = req.body.product_id + "";
+    //let customerId = req.body.loginSession.customer_id;
     let customerId = req.body.user;
-    let productId = req.body.product.id;
-    let price = req.body.product.price;
-    db.one(`insert into bid values(default, $1, $2, $3) returning *`, [customerId, productId, price])
+    db.oneOrNone(`select * from bid where product_id = $1 order by price desc limit 1;`, [productId])
+    .then(highBid => {
+        if(highBid){
+            console.log('user bid');
+            return  db.one(`insert into bid values (default, $1, $2, $3 + 5) returning *`, [customerId, productId, highBid.price])
+        }else {
+            return db.one(`select * from product where id = $1`, [productId])
+
+            .then(product =>{
+
+                    return db.one(`insert into bid values (default, $1, $2, $3) returning *`, [customerId, productId, product.price])
+            })
+        }
+    })
+
+
     .then(data => resp.json(data))
     .catch(next);
 });
@@ -161,12 +174,10 @@ app.post('/api/user/bid', (req, resp, next)=>{
 app.post('/api/shopping_cart',(req, resp, next)=>{
     let productId = req.body.product_id;
     let customerId = req.loginSession.customer_id;
-    db.one(`insert into product_in_shopping_cart values (default, 1$, 2$) returning *`, [productId, customerId])
+    db.one(`insert into product_in_shopping_cart values (default, $1, $2) returning *`, [productId, customerId])
     .then(data => resp.json(data))
     .catch(next);
 });
-
-
 
 
 app.use((err, req, resp, next) => {

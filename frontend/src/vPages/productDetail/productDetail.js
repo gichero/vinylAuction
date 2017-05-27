@@ -1,7 +1,7 @@
 import React from 'react';
 import * as ReactRedux from 'react-redux';
 import * as actions from './productDetail.actions';
-import * as HomepageActions from './homePage.actions';
+import * as HomepageActions from '../homePage/homePage.actions';
 import {Router, Route, Link, IndexLink, IndexRoute, hashHistory} from 'react-router';
 
 class ProductDetail extends React.Component{
