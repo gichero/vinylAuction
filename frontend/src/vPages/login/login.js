@@ -10,6 +10,7 @@ class Login extends React.Component{
         let object = {
             userlogin: this.props.userlogin,
             passlogin: this.props.passlogin
+
         }
 
         return(
@@ -24,7 +25,7 @@ class Login extends React.Component{
             <input onChange={event=>this.props.write(event.target.value,'userlogin')}className='userlogin' type='text'/>
 
             <h3>Password</h3>
-            <input onChange={event=>this.props.write(event.target.value,'passlogin')}className='passlogin' type='text'/>
+            <input onChange={event=>this.props.write(event.target.value,'passlogin')}className='passlogin' type='text'/> <br/>
 
             <button onClick={()=>this.props.login(object)}>Submit</button>
 

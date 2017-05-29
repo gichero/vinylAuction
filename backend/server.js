@@ -18,15 +18,16 @@ app.use(bodyParser.json());
 
 app.use(cors());
 
-// Request  all products
+// API requesting  all products
 
 app.get('/api/products', (req, resp, next) => {
-  db.any('select * from product')
-    .then(data => resp.json(data))
-    .catch(next);
+    db.any('select * from product')
+   .then(data => resp.json(data))
+   .catch(next);
 });
 
-// Request specific product
+// API requesting specific product
+
 app.get('/api/product/:id', (req, resp, next) => {
   let id = req.params.id;
   db.oneOrNone('select * from product where id = $1', id)
@@ -44,7 +45,7 @@ app.get('/api/product/:id', (req, resp, next) => {
 });
 
 /*
-Request customer information
+ API requesting customer information
 {
   username: "lolcat",
   password: "forthelolz",
@@ -77,7 +78,7 @@ app.post('/api/user/signup', (req, resp, next) => {
 });
 
 /*
-Request Login:
+API requesting Login:
 {
   username: "lolcat",
   password: "forthelolz",
@@ -92,6 +93,7 @@ app.post('/api/user/login', (req, resp, next) => {
     username)
     .then(customer =>
       [customer,
+          //password encryption
         bcrypt.compare(password, customer.password)])
     .spread((customer, matches) => {
       if (matches) {
@@ -120,11 +122,11 @@ app.post('/api/user/login', (req, resp, next) => {
     });
     //.catch(next);
 });
-// API bid placed
-// API checkout
+//
 function respondUnauthorized(resp){
-    //resp.status(403);
+    resp.status(403);
     resp.json({
+
         message: 'Unauthorized'
     });
 }
@@ -135,6 +137,7 @@ app.use(function authorization(req, resp, next) {
         respondUnauthorized(resp);
         return;
     }
+
     db.oneOrNone(`select * from login_session where token = $1`, token)
     .then(loginSession => {
         if(!loginSession){
@@ -147,9 +150,10 @@ app.use(function authorization(req, resp, next) {
     .catch(next);
 });
 
+//API that places a bid on a product and increases the starting or current price by 5$
+
 app.post('/api/user/bid', (req, resp, next)=>{
     let productId = req.body.product_id + "";
-    //let customerId = req.body.loginSession.customer_id;
     let customerId = req.body.user;
     db.oneOrNone(`select * from bid where product_id = $1 order by price desc limit 1;`, [productId])
     .then(highBid => {
@@ -171,6 +175,8 @@ app.post('/api/user/bid', (req, resp, next)=>{
     .catch(next);
 });
 
+//API shopping cart
+
 app.post('/api/shopping_cart',(req, resp, next)=>{
     let productId = req.body.product_id;
     let customerId = req.loginSession.customer_id;
@@ -182,7 +188,7 @@ app.post('/api/shopping_cart',(req, resp, next)=>{
 
 app.use((err, req, resp, next) => {
   //resp.status(500);
-  resp.status(403);
+
   resp.json({
     message: err.message,
     stack: err.stack.split('\n')
