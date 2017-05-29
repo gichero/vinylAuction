@@ -7,9 +7,10 @@ import { Router, Route, Link, IndexLink, IndexRoute, hashHistory } from 'react-r
 class Login extends React.Component{
 
     render(){
-
-
-
+        let object = {
+            userlogin: this.props.userlogin,
+            passlogin: this.props.passlogin
+        }
 
         return(
 
@@ -25,7 +26,7 @@ class Login extends React.Component{
             <h3>Password</h3>
             <input onChange={event=>this.props.write(event.target.value,'passlogin')}className='passlogin' type='text'/>
 
-            <button onClick={()=>this.props.signup(object)}>Submit</button>
+            <button onClick={()=>this.props.login(object)}>Submit</button>
 
             </div>
 
@@ -34,3 +35,10 @@ class Login extends React.Component{
     }
 
 }
+
+const LoginContainer = ReactRedux.connect(
+  state => state.Login,
+  actions
+)(Login);
+
+export default LoginContainer;

@@ -14,12 +14,15 @@ import ProductDetailContainer from './vPages/productDetail/productDetail.js';
 import ProductDetailReducer from './vPages/productDetail/productDetail.reducer';
 import SignupReducer from './vPages/signup/signup.reducer';
 import SignupContainer from './vPages/signup/signup.js';
+import LoginReducer from './vPages/login/login.reducer';
+import LoginContainer from './vPages/login/login.js';
 import './index.css';
 
 const reducer = Redux.combineReducers({
     HomePage: HomePageReducer,
     ProductDetail: ProductDetailReducer,
-    Signup: SignupReducer
+    Signup: SignupReducer,
+    Login: LoginReducer
 });
 
 const store = Redux.createStore(
@@ -69,6 +72,7 @@ ReactDOM.render(
             <Route path = "/" component={AppLayout}>
             <IndexRoute component={HomePageContainer}/>
             <Route path="/productDetail/:id" component={ProductDetailContainer}/>
+            <Route path="/login" component={LoginContainer}/>
             <Route path="/signup" component={SignupContainer}/>
             </Route>
         </Router>
