@@ -2,8 +2,6 @@ import {Router, Route, hashHistory, Link, IndexRoute, IndexLink} from "react-rou
 import $ from 'jquery';
 
 function pageInfo(info){
-    console.log("firing detailImage")
-    console.log(info);
     return{
         type: 'detailImage',
         payload: info

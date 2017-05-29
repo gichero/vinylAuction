@@ -17,10 +17,9 @@ render() {
       display = (
           <div className = "navbar">
           <div className = "loginform">
-          <button onClick={()=>this.props.login({username:this.props.userlogin, password: this.props.passlogin})}>LogIn</button>
-          <input onChange={event=>this.props.write(event.target.value,'userlogin')}className='userlogin' type='text'/>
-          <input onChange={event=>this.props.write(event.target.value,'passlogin')}className='passlogin' type='text'/>
-          <button><Link to='/signup'>Sign Up</Link></button>
+          <h4><Link to="/login">Login</Link></h4>
+          
+          <h4><Link to='/signup'>Sign Up</Link></h4>
           </div>
           </div>
       )
