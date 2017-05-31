@@ -6,8 +6,6 @@ import ReduxThunk from 'redux-thunk';
 import {persistStore, autoRehydrate} from 'redux-persist';
 import {Router, Route, Link, IndexLink, IndexRoute, hashHistory} from 'react-router';
 
-//
-
 import HomePageContainer from './vPages/homePage/homePage.js';
 import HomePageReducer from './vPages/homePage/homePage.reducer';
 import ProductDetailContainer from './vPages/productDetail/productDetail.js';

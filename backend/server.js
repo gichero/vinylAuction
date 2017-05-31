@@ -158,7 +158,6 @@ app.post('/api/user/bid', (req, resp, next)=>{
     db.oneOrNone(`select * from bid where product_id = $1 order by price desc limit 1;`, [productId])
     .then(highBid => {
         if(highBid){
-            console.log('user bid');
             return  db.one(`insert into bid values (default, $1, $2, $3 + 5) returning *`, [customerId, productId, highBid.price])
         }else {
             return db.one(`select * from product where id = $1`, [productId])
@@ -169,8 +168,6 @@ app.post('/api/user/bid', (req, resp, next)=>{
             })
         }
     })
-
-
     .then(data => resp.json(data))
     .catch(next);
 });
@@ -185,6 +182,18 @@ app.post('/api/shopping_cart',(req, resp, next)=>{
     .catch(next);
 });
 
+app.get('/api/shopping_cart', (req, resp, next)=>{
+    let customerId = req.loginSession.customer_id;
+    db.any(`select
+            product.*
+         from
+            product_in_shopping_cart
+         inner join
+            product on product.id = product_in_shopping_cart.product_id
+             where customer id = $1`, customerId)
+    .then(data => resp.json(data))
+    .catch(next);
+});
 
 app.use((err, req, resp, next) => {
   //resp.status(500);

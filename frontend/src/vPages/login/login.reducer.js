@@ -8,13 +8,13 @@ export default function AppLayoutReducer(state = INITIAL_STATE, action){
       userinfo: action.payload
     });
   }  else
- if (action.type === 'userlogin'){
+ if (action.type === 'username'){
       return Object.assign({}, state, {
-        userlogin: action.text
+        username: action.text
       });
-  }  else if (action.type === 'passlogin'){
+  }  else if (action.type === 'password'){
         return Object.assign({}, state, {
-          passlogin: action.text
+          password: action.text
         });
       }
       else if (action.type === 'logout'){

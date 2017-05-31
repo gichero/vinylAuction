@@ -24,8 +24,8 @@ export function login(data){
             url: 'http://localhost:4000/api/user/login',
             data: JSON.stringify({
 
-                username: data.userlogin,
-                password: data.passlogin,
+                username: data.username,
+                password: data.password
             }),
 
             dataType: 'json'

@@ -7,14 +7,12 @@ export default function ProductDetailReducer(state = INITIAL_STATE,action){
 
     if(action.type === 'detailImage'){
         return Object.assign({}, state, {
-            items: action.payload,
-            bid: action.payload.price
+            items: action.payload
         });
     }
-
     if(action.type === 'newBid'){
         return Object.assign({}, state, {
-            items: action.payload,
+            // items: action.payload,
             bid: action.payload.price
         });
     }

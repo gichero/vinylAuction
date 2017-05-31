@@ -37,6 +37,7 @@ export function placeBid(data){
             data: JSON.stringify({
                 user: data.user,
                 product_id: data.product.id,
+                token: data.login
             }),
             contentType: 'application/json'
         })

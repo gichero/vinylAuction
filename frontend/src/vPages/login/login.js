@@ -8,8 +8,8 @@ class Login extends React.Component{
 
     render(){
         let object = {
-            userlogin: this.props.userlogin,
-            passlogin: this.props.passlogin
+            username: this.props.username,
+            password: this.props.password
 
         }
 
@@ -22,10 +22,10 @@ class Login extends React.Component{
             <h2>Login</h2>
 
             <h3>Username</h3>
-            <input onChange={event=>this.props.write(event.target.value,'userlogin')}className='userlogin' type='text'/>
+            <input onChange={event=>this.props.write(event.target.value,'username')}className='username' type='text'/>
 
             <h3>Password</h3>
-            <input onChange={event=>this.props.write(event.target.value,'passlogin')}className='passlogin' type='text'/> <br/>
+            <input onChange={event=>this.props.write(event.target.value,'password')}className='password' type='text'/> <br/>
 
             <button onClick={()=>this.props.login(object)}>Submit</button>
 
