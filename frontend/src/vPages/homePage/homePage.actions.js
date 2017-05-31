@@ -2,7 +2,7 @@ import {Router, Route, hashHistory, Link, IndexRoute, IndexLink} from 'react-rou
 import $ from 'jquery';
 
 export function pageInfo(info){
-    console.log(info);
+    console.log(info, 'info');
     return{
         type: 'fetchImage',
         payload: info
@@ -10,6 +10,7 @@ export function pageInfo(info){
 }
 
 export function loginInfo(info){
+    //console.log(info, 'info');
     return{
         type: 'login',
         payload: info
@@ -57,3 +58,5 @@ export function write(event, type){
         text: event
     }
 }
+
+// export function fetchPrice(){}

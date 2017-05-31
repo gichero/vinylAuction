@@ -26,11 +26,12 @@ app.get('/api/products', (req, resp, next) => {
    .catch(next);
 });
 
-// API requesting specific product
+// API requesting specific product use an inner join or left join
 
 app.get('/api/product/:id', (req, resp, next) => {
   let id = req.params.id;
-  db.oneOrNone('select * from product where id = $1', id)
+  //db.oneOrNone('select * from product where id = $1', id)
+  db.oneOrNone('select product.*, bid.price as bid from product  left outer join bid on (product.id = bid.product_id) where product.id = $1 order by bid.price desc limit 1;', id)
     .then(data => {
       if (data) {
         resp.json(data);
@@ -44,16 +45,7 @@ app.get('/api/product/:id', (req, resp, next) => {
     .catch(next);
 });
 
-/*
- API requesting customer information
-{
-  username: "lolcat",
-  password: "forthelolz",
-  email: "lol@cat.com",
-  first_name: "lol",
-  last_name: "cat"
-}
-*/
+//API requesting customer information
 
 app.post('/api/user/signup', (req, resp, next) => {
   let data = req.body;
@@ -77,13 +69,8 @@ app.post('/api/user/signup', (req, resp, next) => {
     .catch(next);
 });
 
-/*
-API requesting Login:
-{
-  username: "lolcat",
-  password: "forthelolz",
-}
-*/
+
+//API requesting Login
 
 app.post('/api/user/login', (req, resp, next) => {
   let username = req.body.username;
@@ -158,13 +145,13 @@ app.post('/api/user/bid', (req, resp, next)=>{
     db.oneOrNone(`select * from bid where product_id = $1 order by price desc limit 1;`, [productId])
     .then(highBid => {
         if(highBid){
-            return  db.one(`insert into bid values (default, $1, $2, $3 + 5) returning *`, [customerId, productId, highBid.price])
+            return  db.one(`insert into bid values (default, $1, $2 + 5, $3) returning *`, [customerId, highBid.price, productId])
         }else {
             return db.one(`select * from product where id = $1`, [productId])
 
             .then(product =>{
 
-                    return db.one(`insert into bid values (default, $1, $2, $3) returning *`, [customerId, productId, product.price])
+                    return db.one(`insert into bid values (default, $1, $2, $3) returning *`, [customerId, product.price, productId])
             })
         }
     })

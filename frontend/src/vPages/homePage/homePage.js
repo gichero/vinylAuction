@@ -17,9 +17,9 @@ render() {
       display = (
           <div className = "navbar">
           <div className = "loginform">
-          <h4><Link to="/login">Login</Link></h4>
 
-          <h4><Link to='/signup'>Sign Up</Link></h4>
+          <li key ="signup"><Link to="/login">Login</Link></li>
+          <li key ="login"><Link to='/signup'>Sign Up</Link></li>
           </div>
           </div>
       )
@@ -29,7 +29,9 @@ render() {
       display = (
           <div className ="navbar">
           <div className = "logout">
-          <h4>Welcome {this.props.userinfo.first_name}<button onClick={()=>this.props.logout()} className = "logoutButton" > logOut</button></h4>
+          <li key="welcome"> Welcome {this.props.userinfo.first_name}<a href ="#" onClick={()=>this.props.logout()}>Logout</a></li>
+
+          <li key="shoppingCart"><Link to="/shoppingCart">Cart</Link></li>
           </div>
           </div>)
    }

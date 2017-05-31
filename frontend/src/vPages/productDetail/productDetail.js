@@ -10,6 +10,7 @@ class ProductDetail extends React.Component{
     componentDidMount(){
             this.props.fetchImage(this.props.params.id);
             this.props.fetchProduct(this.props.params.id);
+            
     }
 
     componentWillReceiveProps(newProps){

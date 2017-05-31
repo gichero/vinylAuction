@@ -14,13 +14,16 @@ import SignupReducer from './vPages/signup/signup.reducer';
 import SignupContainer from './vPages/signup/signup.js';
 import LoginReducer from './vPages/login/login.reducer';
 import LoginContainer from './vPages/login/login.js';
+//import ShoppingCartReducer from './vPages/shoppingCart/shoppingCart.reducer';
+//import ShoppingCartContainer from './vPages/shoppingCart/shoppingCart.js';
 import './index.css';
 
 const reducer = Redux.combineReducers({
     HomePage: HomePageReducer,
     ProductDetail: ProductDetailReducer,
     Signup: SignupReducer,
-    Login: LoginReducer
+    Login: LoginReducer,
+    //ShoppingCart: ShoppingCartReducer
 });
 
 const store = Redux.createStore(
@@ -42,7 +45,7 @@ class AppLayout extends React.Component {
     if (this.props.userinfo != null){
         topRight = (
             <div className='topRight'>
-            <button><Link to="/Checkout">cart</Link></button>
+            <li><Link to="/shoppingCart">cart</Link></li>
                 <h3>{'Welcome' + this.props.userInfo.username}</h3>
             </div>
     );
@@ -72,6 +75,7 @@ ReactDOM.render(
             <Route path="/productDetail/:id" component={ProductDetailContainer}/>
             <Route path="/login" component={LoginContainer}/>
             <Route path="/signup" component={SignupContainer}/>
+            
             </Route>
         </Router>
     </ReactRedux.Provider>,
