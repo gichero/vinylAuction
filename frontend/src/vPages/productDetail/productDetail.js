@@ -10,7 +10,6 @@ class ProductDetail extends React.Component{
     componentDidMount(){
             this.props.fetchImage(this.props.params.id);
             this.props.fetchProduct(this.props.params.id);
-            
     }
 
     componentWillReceiveProps(newProps){
@@ -24,8 +23,9 @@ class ProductDetail extends React.Component{
         let bid;
 
         if(this.props.ProductDetail.bid){
-            bid =  <h3>Current Bid {this.props.ProductDetail.bid}</h3>
+            bid =  <h3>Bid: {this.props.ProductDetail.bid}</h3>
         }else{
+
             bid =  <h3>Starting Bid {this.props.ProductDetail.items.price}</h3>
         }
 

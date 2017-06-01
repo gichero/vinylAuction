@@ -54,7 +54,7 @@ class AppLayout extends React.Component {
             <div>
       <div>
         <div className="navbar">
-          <h2>VinylAuction</h2>
+          <h2 className = "">firstPressVinyl.com</h2>
           <h4><IndexLink to="/" activeClassName="active">All Records</IndexLink></h4>
           {topRight}
         </div>
@@ -75,7 +75,7 @@ ReactDOM.render(
             <Route path="/productDetail/:id" component={ProductDetailContainer}/>
             <Route path="/login" component={LoginContainer}/>
             <Route path="/signup" component={SignupContainer}/>
-            
+
             </Route>
         </Router>
     </ReactRedux.Provider>,

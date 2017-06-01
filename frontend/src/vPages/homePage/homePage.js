@@ -18,8 +18,8 @@ render() {
           <div className = "navbar">
           <div className = "loginform">
 
-          <li key ="signup"><Link to="/login">Login</Link></li>
-          <li key ="login"><Link to='/signup'>Sign Up</Link></li>
+          <ul key ="signup"><Link to="/login">Login</Link></ul>
+          <ul key ="login"><Link to='/signup'>Sign Up</Link></ul>
           </div>
           </div>
       )
@@ -29,9 +29,9 @@ render() {
       display = (
           <div className ="navbar">
           <div className = "logout">
-          <li key="welcome"> Welcome {this.props.userinfo.first_name}<a href ="#" onClick={()=>this.props.logout()}>Logout</a></li>
+          <ul key="welcome"> Welcome {this.props.userinfo.first_name}<a href ="#" onClick={()=>this.props.logout()}>Logout</a></ul>
 
-          <li key="shoppingCart"><Link to="/shoppingCart">Cart</Link></li>
+          <ul key="shoppingCart"><Link to="/shoppingCart">Cart</Link></ul>
           </div>
           </div>)
    }
@@ -42,12 +42,12 @@ render() {
         <div className = "page">
         {display}
         {this.props.allImages.map((page, idx)=>
-            <div className="page" key={idx}>
+            <div className="products" key={idx}>
             <img className="cover" src={'/media/' +page.image_path}/>
             <h3>{page.name}</h3>
-            <h4>Starting bid ${page.price.toFixed(2)}</h4>
-            <h4><a href={"/productDetail/"+page.id}/></h4>
-            <button><Link to={"/productDetail/"+page.id}>Check it out!</Link></button>
+            <h5>Starting bid ${page.price.toFixed(2)}</h5>
+            <h5><a href={"/productDetail/"+page.id}/></h5>
+            <h5><Link to={"/productDetail/"+page.id}>Check it out!</Link></h5>
             <h5>bid increments by $5</h5>
             </div>)}
         </div>

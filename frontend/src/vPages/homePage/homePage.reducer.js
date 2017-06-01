@@ -9,7 +9,6 @@ const INITIAL_STATE = {
         return Object.assign({}, state, {
             allImages: action.payload
         });
-
     }else if(action.type === 'login'){
         return Object.assign({}, state, {
             userinfo: action.payload

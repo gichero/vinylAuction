@@ -11,30 +11,30 @@ body {
   height: 6vw;
   z-index: 1;
   padding-left: 2vw;
-  background-color: gray;
+  opacity: inherit;
 
 }
 
 .products{
   float: left;
-  width: 25%;
-  margin-left: 10vw;
-  margin-bottom: 2vw;
-  /*margin-left: 5vw;
-  margin-bottom: 5vw;*/
+  width: 33%;
+  margin: 5vw;
+  text-align: center;
+  background-color: #D2E7E7;
+  border-radius: 2px;
+
 }
 
 .cover{
     /*width: 100%;*/
-    width: 20vw;
-    height: 20vw;
+    width: 29.2vw;
+    height: 29.2vw;
 }
 
 .page{
   margin-top: 6vw;
   padding-top: 1vw;
   padding-left: 10vw;
-  background-color: lightblue;
 }
 
 .detailPic{
@@ -69,7 +69,7 @@ body {
 }
 
 .loginform{
-    z-index: 1;
+    display: inline;
     float:right;
     margin-right: 12vw;
     margin-top: 2vw;

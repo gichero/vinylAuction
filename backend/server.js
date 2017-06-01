@@ -182,6 +182,13 @@ app.get('/api/shopping_cart', (req, resp, next)=>{
     .catch(next);
 });
 
+//select max(bid_time), max(bid.price) as high_bid, product.* from product inner join bid on (product.id = bid.product_id) where product.id = 1 group by product.id having max(bid_time) < now() - interval '3 minutes'
+
+// function expiredAuction(){
+//     let auction = 'select max(bid_time), max(bid.price) as high_bid, product.* from product inner join bid on (product.id = bid.product_id) where product.id = 1 group by product.id having max(bid_time) < now() - interval '3 minutes''
+//
+// }
+
 app.use((err, req, resp, next) => {
   //resp.status(500);
 
