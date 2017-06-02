@@ -120,7 +120,7 @@ function respondUnauthorized(resp){
 }
 
 app.use(function authorization(req, resp, next) {
-    let token = req.body.token;
+    let token = req.query.token||req.body.token;
     if(!token){
         respondUnauthorized(resp);
         return;
@@ -218,13 +218,19 @@ app.post('/api/shopping_cart',(req, resp, next)=>{
 
 app.get('/api/shopping_cart', (req, resp, next)=>{
     let customerId = req.loginSession.customer_id;
-    db.any(`select
-            product.*
-         from
-            product_in_shopping_cart
-         inner join
-            product on product.id = product_in_shopping_cart.product_id
-             where customer id = $1`, customerId)
+    db.any(`select distinct on
+	(product.id) bid.price
+as
+	price, product.name, bid.customer_id, product.id
+from
+	product
+inner join bid on (product.id = bid.product_id)
+inner join product_in_shopping_cart on (product.id = product_in_shopping_cart.product_id)
+where
+	product_in_shopping_cart.customer_id = $1
+order by
+	product.id, bid.price desc;
+`, customerId)
     .then(data => resp.json(data))
     .catch(next);
 });

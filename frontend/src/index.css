@@ -14,6 +14,8 @@ input {
     width: 25vw;
     border-radius: 2px;
     border: 2px solid gray;
+    font-size: 1.4em;
+    font-family: 'Special Elite', cursive;
 }
 
 button {
@@ -23,6 +25,7 @@ button {
     border-radius: 3px;
     background-color: white;
     border: 2px solid gray;
+    font-family: 'Special Elite', cursive;
     margin-top: 0.3vw;
 }
 
@@ -71,19 +74,20 @@ button {
     font-family: 'Bungee Outline', cursive;
     font-size: 6em;
     position: absolute;
-    color: #FFFFFF;
+    color: #299ED9;
+    text-shadow: 2px 2px black;
     bottom: 25vw;
-    left: 32vw;
+    left: 37vw;
 }
 
 .logotext2{
-    color: #FFFFFF;
-    /*font-family: 'Monoton', cursive;*/
+    color: #299ED9;
+    text-shadow: 2px 2px black;
     font-family: 'Bungee Outline', cursive;
     position: absolute;
     font-size: 4em;
     bottom: 22vw;
-    left: 26vw;
+    left: 31vw;
 }
 
 .detailPic{
@@ -92,6 +96,10 @@ button {
   margin-left: 15vw;
   margin-right: 10vw;
   height: 500px;
+}
+
+.pageDetail{
+    font-size: 1.5em;
 }
 
 .description{
@@ -150,6 +158,7 @@ button {
 }
 
 .loginSignup{
+    font-size: 1.2em;
     float: right;
     margin-right: 12vw;
     display: inline;
@@ -158,7 +167,11 @@ button {
 
 .loginSignup p {
     float:left;
-    margin: 5px;
+    margin: 10px;
+}
+
+.welcome {
+    font-size: 1.2em;
 }
 
 .shoppingCart{

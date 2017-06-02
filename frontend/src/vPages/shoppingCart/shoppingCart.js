@@ -7,13 +7,13 @@ class ShoppingCart extends React.Component{
 
     componentDidMount(){
         if(this.props.auth_token){
-            this.props.getShoppingCart(this.props.auth_token);
+            this.props.getShoppingcart(this.props.auth_token);
         }
     }
 
     componentWillReceiveProps(newProps){
         if(this.props.auth_token !== newProps.auth_token){
-            this.props.getShoppingCart(newProps.auth_token);
+            this.props.getShoppingcart(newProps.auth_token);
         }
     }
 

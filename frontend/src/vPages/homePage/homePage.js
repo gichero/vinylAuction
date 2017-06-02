@@ -29,7 +29,7 @@ render() {
       display = (
           <div className ="navbar">
           <div className = "logout">
-          <p key="welcome"> Welcome {this.props.userinfo.first_name}<a href ="#" onClick={()=>this.props.logout()}> Logout</a></p>
+          <p className = "welcome" key="welcome"> Welcome {this.props.userinfo.first_name}<a href ="#" onClick={()=>this.props.logout()}> Logout</a></p>
           </div>
           </div>)
    }
