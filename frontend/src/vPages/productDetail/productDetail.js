@@ -48,7 +48,7 @@ class ProductDetail extends React.Component{
                          user:this.props.HomePage.userinfo.id, login:this.props.auth_token, product:this.props.ProductDetail.items
                      })}>Place a Bid</button>
                      <h5>Bid expires in 2 minutes</h5>
-                     <li><Link to="/shoppingCart">cart</Link></li>
+                     <h5><Link to="/shoppingCart">cart</Link></h5>
                 </div>
             </div>
         )

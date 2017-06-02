@@ -41,7 +41,7 @@ class Signup extends React.Component{
                 <input name='confpassword' onChange={(event)=>this.props.write(event.target.value, 'confpassword')}placeholder='confirm password' type='text' className='confpassword'/>
                 <br/>
 
-                <button onClick={()=>this.props.signup(object)}>Submit</button>
+                <button onClick={()=>this.props.signup(object)}>Signup</button>
 
             </div>
         )

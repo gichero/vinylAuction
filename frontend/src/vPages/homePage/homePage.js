@@ -15,12 +15,12 @@ render() {
      if(!this.props.userinfo){
 
       display = (
-          <div className = "navbar">
-          <div className = "loginform">
 
-          <ul key ="signup"><Link to="/login">Login</Link></ul>
-          <ul key ="login"><Link to='/signup'>Sign Up</Link></ul>
-          </div>
+          <div className = "navbar">
+          <div className = "loginSignup">
+          <p key ="signup"><Link to="/login">Login</Link></p>
+          <p key ="login"><Link to='/signup'>Sign Up</Link></p>
+         </div>
           </div>
       )
 
@@ -29,9 +29,7 @@ render() {
       display = (
           <div className ="navbar">
           <div className = "logout">
-          <ul key="welcome"> Welcome {this.props.userinfo.first_name}<a href ="#" onClick={()=>this.props.logout()}>Logout</a></ul>
-
-          <ul key="shoppingCart"><Link to="/shoppingCart">Cart</Link></ul>
+          <p key="welcome"> Welcome {this.props.userinfo.first_name}<a href ="#" onClick={()=>this.props.logout()}> Logout</a></p>
           </div>
           </div>)
    }
@@ -40,7 +38,10 @@ render() {
     return(
 
         <div className = "page">
-        <div className = "pic">
+        <div className = "logopic">
+        <h1 className = "logotext">WELCOME</h1>
+        <h2 className = "logotext2">vinylAuction.com</h2>
+        </div>
         {display}
         {this.props.allImages.map((page, idx)=>
             <div className="products" key={idx}>
@@ -51,7 +52,6 @@ render() {
             <h5><Link to={"/productDetail/"+page.id}>Check it out!</Link></h5>
             <h5>bid increments by $5</h5>
             </div>)}
-        </div>    
         </div>
     )
 }

@@ -213,7 +213,7 @@ function expiredAuction(){
       });
  }
 
- setInterval(expiredAuction, 120000);
+ //setInterval(expiredAuction, 120000);
 
 //API shopping cart
 

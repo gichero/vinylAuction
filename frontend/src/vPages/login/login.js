@@ -27,7 +27,7 @@ class Login extends React.Component{
             <h3>Password</h3>
             <input onChange={event=>this.props.write(event.target.value,'password')}className='password' type='text'/> <br/>
 
-            <button onClick={()=>this.props.login(object)}>Submit</button>
+            <button onClick={()=>this.props.login(object)}>Login</button>
 
             </div>
 
