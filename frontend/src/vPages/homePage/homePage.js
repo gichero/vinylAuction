@@ -40,6 +40,7 @@ render() {
     return(
 
         <div className = "page">
+        <div className = "pic">
         {display}
         {this.props.allImages.map((page, idx)=>
             <div className="products" key={idx}>
@@ -50,6 +51,7 @@ render() {
             <h5><Link to={"/productDetail/"+page.id}>Check it out!</Link></h5>
             <h5>bid increments by $5</h5>
             </div>)}
+        </div>    
         </div>
     )
 }

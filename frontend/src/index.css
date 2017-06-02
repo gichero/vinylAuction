@@ -20,9 +20,8 @@ body {
   width: 33%;
   margin: 5vw;
   text-align: center;
-  background-color: #D2E7E7;
+  /*background-color: #D2E7E7;*/
   border-radius: 2px;
-
 }
 
 .cover{
@@ -32,9 +31,9 @@ body {
 }
 
 .page{
-  margin-top: 6vw;
+  margin-top: 5vw;
   padding-top: 1vw;
-  padding-left: 10vw;
+  margin-left: 7vw;
 }
 
 .detailPic{
@@ -91,5 +90,10 @@ body {
 
 .login{
     margin-top: 8vw;
+    margin-left: 10vw;
+}
+
+.shoppingCart{
+    margin-top: 10vw;
     margin-left: 10vw;
 }

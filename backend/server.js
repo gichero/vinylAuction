@@ -137,6 +137,7 @@ app.use(function authorization(req, resp, next) {
     .catch(next);
 });
 
+
 //API that places a bid on a product and increases the starting or current price by 5$
 
 app.post('/api/user/bid', (req, resp, next)=>{
@@ -158,6 +159,61 @@ app.post('/api/user/bid', (req, resp, next)=>{
     .then(data => resp.json(data))
     .catch(next);
 });
+
+// function that takes expired bid to the shopping_cart
+
+function expiredAuction(){
+
+    console.log('querying');
+     db.any(`select distinct on (product.id)
+	               bid.price as high_bid,
+	                  customer_id,
+	                     product.id
+                 from
+	                product inner join bid
+		on (product.id = bid.product_id)
+            where bid.bid_time < now() - interval '2 minutes' and product.state = TRUE
+        order by
+	         product.id, bid.price desc;
+`)
+
+     .then( (auctions) => {
+         console.log('done querying', auctions);
+         if (auctions.length > 0){
+             return auctions;
+         }
+     })
+    //  .catch(error => {
+    //      console.log(error, 'error');
+    //  });
+
+     .then((auctions) => {
+
+         let auction = auctions[0];
+
+         let promises = auctions.map(auction => {
+             let productId = auction.id;
+             let customerId =auction.customer_id;
+             return db.any(`insert into product_in_shopping_cart values (default, $1, $2) returning *`, [productId, customerId])
+         })
+         return [auctions, Promise.all(promises)];
+
+     })
+     .spread(auctions => {
+
+             let promises = auctions.map(auction => {
+             let productId = auction.id;
+             return db.none(`update product set state = FALSE where id = $1` [productId])
+         })
+         return [auctions, Promise.all(promises)];
+     })
+
+      .catch(error => {
+          console.log(error, 'error');
+      });
+ }
+
+ setInterval(expiredAuction, 120000);
 
 //API shopping cart
 
@@ -182,16 +238,8 @@ app.get('/api/shopping_cart', (req, resp, next)=>{
     .catch(next);
 });
 
-//select max(bid_time), max(bid.price) as high_bid, product.* from product inner join bid on (product.id = bid.product_id) where product.id = 1 group by product.id having max(bid_time) < now() - interval '3 minutes'
-
-// function expiredAuction(){
-//     let auction = 'select max(bid_time), max(bid.price) as high_bid, product.* from product inner join bid on (product.id = bid.product_id) where product.id = 1 group by product.id having max(bid_time) < now() - interval '3 minutes''
-//
-// }
-
 app.use((err, req, resp, next) => {
-  //resp.status(500);
-
+  resp.status(500);
   resp.json({
     message: err.message,
     stack: err.stack.split('\n')
