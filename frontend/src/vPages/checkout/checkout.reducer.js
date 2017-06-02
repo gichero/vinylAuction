@@ -1,4 +1,7 @@
+
+
 export default function CheckoutReducer(state={userinfo:null},action){
+
   if(action.type === 'fetchImage'){
     return Object.assign({}, state, {
       allItems: action.payload

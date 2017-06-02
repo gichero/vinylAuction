@@ -17,10 +17,10 @@ render() {
       display = (
 
           <div className = "navbar">
-          <div className = "loginSignup">
-          <p key ="signup"><Link to="/login">Login</Link></p>
-          <p key ="login"><Link to='/signup'>Sign Up</Link></p>
-         </div>
+            <div className = "loginSignup">
+                <p key ="signup"><Link to="/login">Login</Link></p>
+                <p key ="login"><Link to='/signup'>Sign Up</Link></p>
+            </div>
           </div>
       )
 
@@ -45,7 +45,7 @@ render() {
         {display}
         {this.props.allImages.map((page, idx)=>
             <div className="products" key={idx}>
-            <img className="cover" src={'/media/' +page.image_path}/>
+            <img className="cover" src={'/media/' +page.image_path} />
             <h3>{page.name}</h3>
             <h5>Starting bid ${page.price.toFixed(2)}</h5>
             <h5><a href={"/productDetail/"+page.id}/></h5>

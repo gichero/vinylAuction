@@ -19,7 +19,7 @@ export function fetchProduct(id){
     console.log("fetchImage")
     let asyncAction = function(dispatch){
         $.ajax({
-            url: 'http://localhost:4000/api/product/' +id
+            url: 'http://localhost:4000/api/product/' + id
         })
         .then(info=>dispatch(pageInfo(info)))
     }

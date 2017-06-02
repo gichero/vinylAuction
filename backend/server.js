@@ -30,6 +30,7 @@ app.get('/api/products', (req, resp, next) => {
 
 app.get('/api/product/:id', (req, resp, next) => {
   let id = req.params.id;
+  console.log(id);
   //db.oneOrNone('select * from product where id = $1', id)
   db.oneOrNone('select product.*, bid.price as bid from product  left outer join bid on (product.id = bid.product_id) where product.id = $1 order by bid.price desc limit 1;', id)
     .then(data => {
@@ -177,20 +178,8 @@ function expiredAuction(){
 	         product.id, bid.price desc;
 `)
 
-     .then( (auctions) => {
-         console.log('done querying', auctions);
-         if (auctions.length > 0){
-             return auctions;
-         }
-     })
-    //  .catch(error => {
-    //      console.log(error, 'error');
-    //  });
-
      .then((auctions) => {
-
-         let auction = auctions[0];
-
+         console.log("insert");
          let promises = auctions.map(auction => {
              let productId = auction.id;
              let customerId =auction.customer_id;
@@ -200,10 +189,11 @@ function expiredAuction(){
 
      })
      .spread(auctions => {
-
+            console.log("update");
              let promises = auctions.map(auction => {
              let productId = auction.id;
-             return db.none(`update product set state = FALSE where id = $1` [productId])
+             console.log("productid", productId);
+             return db.none('update product set state = FALSE where id = $1', [productId])
          })
          return [auctions, Promise.all(promises)];
      })
@@ -213,7 +203,8 @@ function expiredAuction(){
       });
  }
 
- //setInterval(expiredAuction, 120000);
+
+ setInterval(expiredAuction, 120000);
 
 //API shopping cart
 

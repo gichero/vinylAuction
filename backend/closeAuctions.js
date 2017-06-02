@@ -9,36 +9,23 @@ const db = pgp({
 });
 
 
-
 function expiredAuction(){
 
     console.log('querying');
      db.any(`select distinct on (product.id)
-	bid.price as high_bid,
-	customer_id,
-	product.id
-from
-	product inner join bid
+	               bid.price as high_bid,
+	                  customer_id,
+	                     product.id
+                 from
+	                product inner join bid
 		on (product.id = bid.product_id)
-where bid.bid_time < now() - interval '3 minutes'
-order by
-	product.id, bid.price desc;
+            where bid.bid_time < now() - interval '2 minutes' and product.state = TRUE
+        order by
+	         product.id, bid.price desc;
 `)
 
-     .then( (auctions) => {
-         console.log('done querying', auctions);
-         if (auctions.length > 0){
-             return auctions;
-         }
-     })
-    //  .catch(error => {
-    //      console.log(error, 'error');
-    //  });
-
      .then((auctions) => {
-
-         let auction = auctions[0];
-
+         console.log("insert");
          let promises = auctions.map(auction => {
              let productId = auction.id;
              let customerId =auction.customer_id;
@@ -48,15 +35,20 @@ order by
 
      })
      .spread(auctions => {
-         if(auctions === true){
-
-             return "Auction Closed";
-         }
+            console.log("update");
+             let promises = auctions.map(auction => {
+             let productId = auction.id;
+             console.log("productid", productId);
+             return db.none('update product set state = FALSE where id = $1', [productId])
+         })
+         return [auctions, Promise.all(promises)];
      })
 
       .catch(error => {
           console.log(error, 'error');
       });
  }
+
+ //setInterval(expiredAuction, 120000);
 
 expiredAuction()
