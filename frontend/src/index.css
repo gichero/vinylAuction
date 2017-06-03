@@ -56,7 +56,6 @@ button {
 .page{
   margin-top: 4vw;
   padding-top: 1vw;
-
 }
 
 .logopic{
@@ -176,5 +175,10 @@ button {
 
 .shoppingCart{
     margin-top: 10vw;
+    margin-left: 10vw;
+}
+
+.checkout{
+    margin-top: 8vw;
     margin-left: 10vw;
 }

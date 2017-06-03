@@ -1,6 +1,7 @@
 const express = require('express');
 const Promise = require('bluebird');
 const cors  = require('cors');
+const stripe = require('stripe');
 const pgp = require('pg-promise')({
     promiseLib: Promise
 });
@@ -13,6 +14,10 @@ const db = pgp({
 });
 
 const app = express();
+
+// var stripe = require("stripe")(
+//   "sk_test_DfGLy7REhVnBpm8fgZFoJidz"
+// );
 
 app.use(bodyParser.json());
 
@@ -204,7 +209,7 @@ function expiredAuction(){
  }
 
 
- setInterval(expiredAuction, 120000);
+ setInterval(expiredAuction, 60000);
 
 //API shopping cart
 
@@ -234,6 +239,17 @@ order by
     .then(data => resp.json(data))
     .catch(next);
 });
+
+app.post((req, resp, next)=>{
+    stripe.charges.create({
+  amount: 2000,
+  currency: "usd",
+  source: "tok_1AQM0KAmd4vhAjub6W8szubl", // obtained with Stripe.js
+  description: "Charge for lily.smith@example.com"
+}, function(err, charge) {
+  // asynchronously called
+});
+})
 
 app.use((err, req, resp, next) => {
   resp.status(500);

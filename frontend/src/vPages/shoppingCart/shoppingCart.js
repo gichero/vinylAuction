@@ -23,10 +23,10 @@ class ShoppingCart extends React.Component{
                 <h2>Shopping Cart</h2>
                 <ul>
                 {this.props.cartItems.map(product=>
-                <li key={product.image_path}>{product.id}>{product.name} - ${product.price}</li>
+                <ul key={product.image_path}>  {product.id} - {product.name} - ${product.price}</ul>
             )}
                 </ul>
-                <button>Checkout</button>
+                <button><Link to = "/checkout">Checkout</Link></button>
             </div>
         )
     }

@@ -39,13 +39,15 @@ render() {
 
         <div className = "page">
         <div className = "logopic">
+        <span className=" span">
         <h1 className = "logotext">WELCOME</h1>
         <h2 className = "logotext2">vinylAuction.com</h2>
+        </span>
         </div>
         {display}
         {this.props.allImages.map((page, idx)=>
             <div className="products" key={idx}>
-            <img className="cover" src={'/media/' +page.image_path} />
+            <img className="cover" src={'/media/' +page.image_path}/>
             <h3>{page.name}</h3>
             <h5>Starting bid ${page.price.toFixed(2)}</h5>
             <h5><a href={"/productDetail/"+page.id}/></h5>

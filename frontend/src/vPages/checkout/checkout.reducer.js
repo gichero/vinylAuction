@@ -1,6 +1,8 @@
+const INITIAL_STATE = {
+    userinfo: null
+}
 
-
-export default function CheckoutReducer(state={userinfo:null},action){
+export default function CheckoutReducer(state = INITIAL_STATE,action){
 
   if(action.type === 'fetchImage'){
     return Object.assign({}, state, {
@@ -8,7 +10,7 @@ export default function CheckoutReducer(state={userinfo:null},action){
     });
   }else if(action.type === 'login'){
     return Object.assign({}, state, {
-      userInfo: action.payload
+      userinfo: action.payload
     });
 }  else if (action.type === 'username'){
       return Object.assign({}, state, {

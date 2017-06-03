@@ -6,18 +6,30 @@ import { Router, Route, hashHistory, Link, IndexRoute, IndexLink } from 'react-r
 
 class Checkout extends React.Component {
   componentDidMount() {
+      if (this.props.userInfo){
     this.props.getItems(this.props.userInfo.id);
+    }
   }
-
 
   render(){
 
-    // let productList =
+    let userinfo = this.props.userinfo
+
+    let productList = this.props.productList.map(product =>
+        <li key = {product.id}> - {product.name} - ${product.price}</li>
+    )
+
     return(
-      <div>
+      <div className = "checkout">
         <h1>Checkout</h1>
+
+        {userinfo && userinfo.first_name}
+
+        <ul>{productList}</ul>
+
         <h2>Shipping Address</h2>
         <h3>Name</h3>
+
         <div className="info">
         <input onChange={(event)=>this.props.write(event.target.value,'name')} className="name" type='text'/>
           <h3>Street</h3>
@@ -25,18 +37,20 @@ class Checkout extends React.Component {
           <h3>State</h3>
         <input onChange={(event)=>this.props.write(event.target.value,'state')} className="first" type='text'/>
           <h3>Zip</h3>
-        <input onChange={(event)=>this.props.write(event.target.value,'zip')} className="last" type='text'/>
-        <button>Submit</button>
+        <input onChange={(event)=>this.props.write(event.target.value,'zip')} className="last" type='text'/><br/>
+
+        <button onClick={()=>this.props.checkout()}>Submit</button>
         </div>
-        <div className="cart">
-          {}
-        </div>
+
       </div>
     )}
   }
 
   const CheckoutContainer = ReactRedux.connect(
-  state =>state.Checkout,
+  state => ({
+      productList: state.ShoppingCart.cartItems,
+      userinfo: state.Login.userinfo
+  }),
   actions
 )(Checkout)
 
